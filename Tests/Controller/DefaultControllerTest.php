@@ -10,8 +10,10 @@ class DefaultControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/hello/Fabien');
+        $route = $client->getContainer()->get('router')->generate('wurstpress_core_homepage', array(), false);
 
-        $this->assertTrue($crawler->filter('html:contains("Hello Fabien")')->count() > 0);
+        $crawler = $client->request('GET', $route);
+
+        $this->assertTrue($crawler->filter('html:contains("Welcome")')->count() > 0);
     }
 }
