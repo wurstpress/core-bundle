@@ -1,0 +1,25 @@
+{
+    "name": "Wurstpress/CoreBundle",
+    "type": "symfony-bundle",
+    "description": "Core functionality ",
+    "keywords": ["example", "bundle"],
+    "homepage": "http://github.com/wurstpress/core-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Janusz Slota",
+            "email": "janusz.slota@nixilla.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4"
+    },
+    "require-dev": {
+        "symfony/framework-bundle": ">=2.1,<2.2-dev"
+    },
+    "autoload": {
+        "psr-0": { "Wurstpress\\CoreBundle": "" }
+    },
+    "minimum-stability": "dev",
+    "target-dir": "Wurstpress/CoreBundle"
+}
