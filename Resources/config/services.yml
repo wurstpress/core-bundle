@@ -1,0 +1,7 @@
+parameters:
+#    wurstpress_core.example.class: Wurstpress\CoreBundle\Example
+
+services:
+#    wurstpress_core.example:
+#        class: %wurstpress_core.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
