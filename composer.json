@@ -1,5 +1,5 @@
 {
-    "name": "Wurstpress/CoreBundle",
+    "name": "wurstpress/core-bundle",
     "type": "symfony-bundle",
     "description": "Core functionality ",
     "keywords": ["example", "bundle"],
