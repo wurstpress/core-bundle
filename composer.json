@@ -13,7 +13,6 @@
     ],
     "require": {
         "php": ">=5.4",
-        "symfony/framework-bundle": ">=2.1,<2.3-dev",
         "stof/doctrine-extensions-bundle": "*"
     },
     "require-dev": {
