@@ -12,10 +12,12 @@
         }
     ],
     "require": {
-        "php": ">=5.4"
+        "php": ">=5.4",
+        "stof/doctrine-extensions-bundle": "*"
     },
     "require-dev": {
-        "symfony/framework-bundle": ">=2.1,<2.2-dev"
+        "symfony/framework-bundle": ">=2.1,<2.2-dev",
+        "phpunit/phpunit": "3.7.*@dev"
     },
     "autoload": {
         "psr-0": { "Wurstpress\\CoreBundle": "" }
