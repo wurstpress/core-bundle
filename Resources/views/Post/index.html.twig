@@ -4,13 +4,13 @@
 
         <div class="span10">
 
-        <h2>{{ 'post.list.label'|trans({}, 'WurstpressCoreBundle') }}</h2>
+        <h2>{{ 'post.list.label'|trans({}, 'WurstpressCoreBundle')|capitalize }}</h2>
 
         <table class="table">
             <thead>
             <tr>
-                <th>{{ 'post.title_and_content.label'|trans({}, 'WurstpressCoreBundle') }}</th>
-                <th>{{ 'post.actions.label'|trans({}, 'WurstpressCoreBundle') }}</th>
+                <th>{{ 'post.title_and_content.label'|trans({}, 'WurstpressCoreBundle')|capitalize }}</th>
+                <th>{{ 'post.actions.label'|trans({}, 'WurstpressCoreBundle')|capitalize }}</th>
                 <th>{{ 'post.created_updated.label'|trans({}, 'WurstpressCoreBundle') }}</th>
             </tr>
             </thead>
@@ -42,7 +42,7 @@
 
         <ul class="inline">
             <li>
-                <a href="{{ path('post_new') }}" class="btn">{{ 'post.create.label'|trans({}, 'WurstpressCoreBundle') }}</a>
+                <a href="{{ path('post_new') }}" class="btn">{{ 'post.create.label'|trans({}, 'WurstpressCoreBundle')|capitalize }}</a>
             </li>
         </ul>
         </div>
