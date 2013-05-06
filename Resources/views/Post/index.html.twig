@@ -1,0 +1,49 @@
+{% extends 'WurstpressCoreBundle::layout.html.twig' %}
+
+{% block body -%}
+
+        <div class="span10">
+
+        <h2>Post list</h2>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Title and Content</th>
+                <th>Actions</th>
+                <th>Created/Updated</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for entity in entities %}
+                <tr>
+                    <td>
+                        <strong>{{ entity.title }}</strong><br />
+                        {{ entity.content }}
+                    </td>
+                    <td class="span2">
+                        <ul class="inline">
+                            <li>
+                                <a href="{{ path('post_show', { 'id': entity.id }) }}" class="btn btn-mini">show</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('post_edit', { 'id': entity.id }) }}" class="btn btn-mini btn-success">edit</a>
+                            </li>
+                        </ul>
+                    </td>
+                    <td>
+                        {% if entity.created %}{{ entity.created|date('Y-m-d H:i:s') }}{% endif %}
+                        {% if entity.updated %}<br />{{ entity.updated|date('Y-m-d H:i:s') }}{% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <ul class="inline">
+            <li>
+                <a href="{{ path('post_new') }}" class="btn">Create a new entry</a>
+            </li>
+        </ul>
+        </div>
+{% endblock %}

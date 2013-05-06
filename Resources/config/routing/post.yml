@@ -1,0 +1,30 @@
+post:
+    pattern:  /
+    defaults: { _controller: "WurstpressCoreBundle:Post:index" }
+
+post_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "WurstpressCoreBundle:Post:show" }
+
+post_new:
+    pattern:  /new
+    defaults: { _controller: "WurstpressCoreBundle:Post:new" }
+
+post_create:
+    pattern:  /create
+    defaults: { _controller: "WurstpressCoreBundle:Post:create" }
+    requirements: { _method: post }
+
+post_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "WurstpressCoreBundle:Post:edit" }
+
+post_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "WurstpressCoreBundle:Post:update" }
+    requirements: { _method: post|put }
+
+post_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "WurstpressCoreBundle:Post:delete" }
+    requirements: { _method: post|delete }
