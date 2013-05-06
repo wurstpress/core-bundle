@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="en" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="2fed8a37f65f1529b248234a179ac6fc" resname="post.create.label">
+        <source>post.create.label</source>
+        <target>add new post</target>
+      </trans-unit>
+      <trans-unit id="bc64b98c207787ce89f94d39feaa6174" resname="post.list.label">
+        <source>post.list.label</source>
+        <target>posts</target>
+      </trans-unit>
+      <trans-unit id="4434c6c669724606492940ee63c7a03c" resname="post.title_and_content.label">
+        <source>post.title_and_content.label</source>
+        <target>title and content</target>
+      </trans-unit>
+      <trans-unit id="ae0375920df419ec7adae31045171f10" resname="post.actions.label">
+        <source>post.actions.label</source>
+        <target>actions</target>
+      </trans-unit>
+      <trans-unit id="ffdccf9704fd9cfd9c1b09a8d7561600" resname="post.created_updated.label">
+        <source>post.created_updated.label</source>
+        <target>created/updated</target>
+      </trans-unit>
+      <trans-unit id="05766030157f3f1d31c9d968a76fd54a" resname="post.show.label">
+        <source>post.show.label</source>
+        <target>show</target>
+      </trans-unit>
+      <trans-unit id="8207482dca3d10b997b6511158d2693f" resname="post.edit.label">
+        <source>post.edit.label</source>
+        <target>edit</target>
+      </trans-unit>
+      <trans-unit id="58f8bff31350205199c688f0c0c0c712" resname="post.title.label">
+        <source>post.title.label</source>
+        <target>title</target>
+      </trans-unit>
+      <trans-unit id="b1dfbae0af2607ae918bd52b21577a1f" resname="post.content.label">
+        <source>post.content.label</source>
+        <target>content</target>
+      </trans-unit>
+      <trans-unit id="9d6de983da0e08af210246e64f8b4f21" resname="post.slug.label">
+        <source>post.slug.label</source>
+        <target>slug</target>
+      </trans-unit>
+      <trans-unit id="4d993f18dfc2044e797468f16b88f450" resname="post.created.label">
+        <source>post.created.label</source>
+        <target>created at</target>
+      </trans-unit>
+      <trans-unit id="9ca9f4b18e4766df423e4ff4a092b551" resname="post.updated.label">
+        <source>post.updated.label</source>
+        <target>updated at</target>
+      </trans-unit>
+      <trans-unit id="f4bedfb9475208263ca527a8d0ab2d38" resname="post.back_to_list.label">
+        <source>post.back_to_list.label</source>
+        <target>back to the list</target>
+      </trans-unit>
+      <trans-unit id="e13907c41eae7d3558c764f8b94c812a" resname="post.delete.label">
+        <source>post.delete.label</source>
+        <target>delete</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

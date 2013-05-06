@@ -9,23 +9,23 @@
         <table class="table">
             <tbody>
             <tr>
-                <th>Title</th>
+                <th>{{ 'post.title.label'|trans({}, 'WurstpressCoreBundle') }}</th>
                 <td>{{ entity.title }}</td>
             </tr>
             <tr>
-                <th>Content</th>
+                <th>{{ 'post.content.label'|trans({}, 'WurstpressCoreBundle') }}</th>
                 <td>{{ entity.content }}</td>
             </tr>
             <tr>
-                <th>Slug</th>
+                <th>{{ 'post.slug.label'|trans({}, 'WurstpressCoreBundle') }}</th>
                 <td>{{ entity.slug }}</td>
             </tr>
             <tr>
-                <th>Created</th>
+                <th>{{ 'post.created.label'|trans({}, 'WurstpressCoreBundle') }}</th>
                 <td>{{ entity.created|date('Y-m-d H:i:s') }}</td>
             </tr>
             <tr>
-                <th>Updated</th>
+                <th>{{ 'post.updated.label'|trans({}, 'WurstpressCoreBundle') }}</th>
                 <td>{{ entity.updated|date('Y-m-d H:i:s') }}</td>
             </tr>
             </tbody>
@@ -33,16 +33,16 @@
 
         <ul class="inline">
             <li>
-                <a href="{{ path('post') }}" class="btn">Back to the list</a>
+                <a href="{{ path('post') }}" class="btn">{{ 'post.back_to_list.label'|trans({}, 'WurstpressCoreBundle') }}</a>
             </li>
             <li>
-                <a href="{{ path('post_edit', { 'id': entity.id }) }}" class="btn btn-success">Edit</a>
+                <a href="{{ path('post_edit', { 'id': entity.id }) }}" class="btn btn-success">{{ 'post.edit.label'|trans({}, 'WurstpressCoreBundle') }}</a>
             </li>
             <li>
                 <form action="{{ path('post_delete', { 'id': entity.id }) }}" method="post">
                     <input type="hidden" name="_method" value="DELETE"/>
                     {{ form_widget(delete_form) }}
-                    <button type="submit" class="btn btn-danger">Delete</button>
+                    <button type="submit" class="btn btn-danger">{{ 'post.delete.label'|trans({}, 'WurstpressCoreBundle') }}</button>
                 </form>
             </li>
         </ul>
