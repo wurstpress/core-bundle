@@ -19,7 +19,7 @@
                 <tr>
                     <td>
                         <strong>{{ entity.title }}</strong><br />
-                        {{ entity.content }}
+                        {{ entity.content|striptags|slice(0,300) }}
                     </td>
                     <td class="span2">
                         <ul class="inline">
