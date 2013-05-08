@@ -158,4 +158,28 @@ class PostTest extends AppTestCase
         $this->assertEquals('Sixth post', "$post", 'toString implementation works');
     }
 
+    public function testTaggable()
+    {
+        $post = new Post();
+
+        $post->setTitle('7th post');
+        $post->setContent('This is content');
+
+        $this->em->persist($post);
+        $this->em->flush();
+
+        $this->assertEquals('wurstpress_post', $post->getTaggableType(), 'taggable type is not correct');
+        $this->assertEquals($post->getId(), $post->getTaggableId(), 'taggable id is not correct');
+        $this->assertEquals(new ArrayCollection(), $post->getTags(), 'should be empty, but it isn\'t');
+
+        $tagManager = $this->container->get('fpn_tag.tag_manager');
+        $fooTag = $tagManager->loadOrCreateTag('foo');
+        $tagManager->addTag($fooTag, $post);
+
+        $tagManager->saveTagging($post);
+
+        $tagManager->loadTagging($post);
+        $this->assertEquals(1, count($post->getTags()), 'should be empty, but it isn\'t');
+    }
+
 }

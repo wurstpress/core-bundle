@@ -2,6 +2,8 @@
 
 namespace Wurstpress\CoreBundle\Entity;
 
+use DoctrineExtensions\Taggable\Doctrine;
+use DoctrineExtensions\Taggable\Taggable;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -15,7 +17,7 @@ use Wurstpress\CoreBundle\Common\CreatedUpdatedTrait;
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Wurstpress\CoreBundle\Entity\PostRepository")
  */
-class Post
+class Post implements Taggable
 {
     use CreatedUpdatedTrait;
 
@@ -72,6 +74,11 @@ class Post
      * @ORM\OneToMany(targetEntity="Comment", mappedBy="post")
      */
     private $comments;
+
+    /**
+     * @var $tags
+     */
+    private $tags;
 
     public function __construct()
     {
@@ -211,5 +218,37 @@ class Post
     public function __toString()
     {
         return $this->title;
+    }
+
+    /**
+     * Returns the unique taggable resource type
+     *
+     * @return string
+     */
+    function getTaggableType()
+    {
+        return 'wurstpress_post';
+    }
+
+    /**
+     * Returns the unique taggable resource identifier
+     *
+     * @return string
+     */
+    function getTaggableId()
+    {
+        return $this->getId();
+    }
+
+    /**
+     * Returns the collection of tags for this Taggable entity
+     *
+     * @return Doctrine\Common\Collections\Collection
+     */
+    function getTags()
+    {
+        $this->tags = $this->tags ?: new ArrayCollection();
+
+        return $this->tags;
     }
 }

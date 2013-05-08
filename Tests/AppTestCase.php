@@ -9,10 +9,13 @@ class AppTestCase extends WebTestCase
 {
     protected $application;
     protected $client;
+    protected $container;
 
     public function setUp()
     {
         $this->client = static::createClient();
+
+        $this->container = $this->client->getKernel()->getContainer();
 
         $this->application = new Application($this->client->getKernel());
         $this->application->setAutoExit(false);
