@@ -26,7 +26,7 @@ class Tagging extends BaseTagging
     /**
      * @var integer
      *
-     * @ORM\ManyToOne(targetEntity="Tag",cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Tag",cascade={"persist"},inversedBy="tagging")
      * @ORM\JoinColumn(name="tag_id", referencedColumnName="id")
      */
     protected $tag;
