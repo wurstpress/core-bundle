@@ -17,6 +17,10 @@
                 <td>{{ entity.content|raw }}</td>
             </tr>
             <tr>
+                <th>{{ 'post.tags.label'|trans({}, 'WurstpressCoreBundle')|capitalize }}</th>
+                <td>{% for tag in entity.tags %}{{ tag }},{% endfor %}</td>
+            </tr>
+            <tr>
                 <th>{{ 'post.slug.label'|trans({}, 'WurstpressCoreBundle')|capitalize }}</th>
                 <td>{{ entity.slug }}</td>
             </tr>

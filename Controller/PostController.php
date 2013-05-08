@@ -37,12 +37,15 @@ class PostController extends Controller
     {
         $entity  = new Post();
         $form = $this->createForm(new PostType(), $entity);
+
         $form->bind($request);
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $em->persist($entity);
             $em->flush();
+
+            $this->addTags($form, $entity);
 
             return $this->redirect($this->generateUrl('post_show', array('id' => $entity->getId())));
         }
@@ -82,11 +85,15 @@ class PostController extends Controller
             throw $this->createNotFoundException('Unable to find Post entity.');
         }
 
+        $tag_manager = $this->get('fpn_tag.tag_manager');
+        $tag_manager->loadTagging($entity);
+
         $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('WurstpressCoreBundle:Post:show.html.twig', array(
             'entity'      => $entity,
-            'delete_form' => $deleteForm->createView(),        ));
+            'delete_form' => $deleteForm->createView()
+        ));
     }
 
     /**
@@ -102,6 +109,9 @@ class PostController extends Controller
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Post entity.');
         }
+
+        $tag_manager = $this->get('fpn_tag.tag_manager');
+        $tag_manager->loadTagging($entity);
 
         $editForm = $this->createForm(new PostType(), $entity);
         $deleteForm = $this->createDeleteForm($id);
@@ -134,6 +144,8 @@ class PostController extends Controller
         if ($editForm->isValid()) {
             $em->persist($entity);
             $em->flush();
+
+            $this->addTags($editForm, $entity);
 
             return $this->redirect($this->generateUrl('post_edit', array('id' => $id)));
         }
@@ -182,5 +194,27 @@ class PostController extends Controller
             ->add('id', 'hidden')
             ->getForm()
         ;
+    }
+
+    /**
+     * @param $form
+     * @param $ts
+     * @param $entity
+     */
+    protected function addTags($form, $entity)
+    {
+        $ts = [];
+
+        $tags = $form['tags']->getData();
+        foreach (explode(',', $tags) as $t)
+            $ts[] = trim(strtolower($t));
+
+        $tag_manager = $this->get('fpn_tag.tag_manager');
+
+        $tags = $tag_manager->loadOrCreateTags($ts);
+
+        $tag_manager->addTags($tags, $entity);
+
+        $tag_manager->saveTagging($entity);
     }
 }

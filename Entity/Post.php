@@ -225,7 +225,7 @@ class Post implements Taggable
      *
      * @return string
      */
-    function getTaggableType()
+    public function getTaggableType()
     {
         return 'wurstpress_post';
     }
@@ -235,7 +235,7 @@ class Post implements Taggable
      *
      * @return string
      */
-    function getTaggableId()
+    public function getTaggableId()
     {
         return $this->getId();
     }
@@ -245,7 +245,7 @@ class Post implements Taggable
      *
      * @return Doctrine\Common\Collections\Collection
      */
-    function getTags()
+    public function getTags()
     {
         $this->tags = $this->tags ?: new ArrayCollection();
 

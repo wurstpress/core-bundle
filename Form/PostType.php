@@ -10,9 +10,15 @@ class PostType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $tags = '';
+
+        foreach($options['data']->getTags() as $tag)
+            $tags .= $tag . ',';
+
         $builder
             ->add('title')
             ->add('content')
+            ->add('tags','text', [ 'mapped' => false, 'data' => $tags ])
         ;
     }
 

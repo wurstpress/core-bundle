@@ -6,6 +6,10 @@
         <source>post.create.label</source>
         <target>add new post</target>
       </trans-unit>
+      <trans-unit id="f4bedfb9475208263ca527a8d0ab2d38" resname="post.back_to_list.label">
+        <source>post.back_to_list.label</source>
+        <target>back to the list</target>
+      </trans-unit>
       <trans-unit id="bc64b98c207787ce89f94d39feaa6174" resname="post.list.label">
         <source>post.list.label</source>
         <target>posts</target>
@@ -38,6 +42,10 @@
         <source>post.content.label</source>
         <target>content</target>
       </trans-unit>
+      <trans-unit id="4aaf439471a1c65a8821381002ae3265" resname="post.tags.label">
+        <source>post.tags.label</source>
+        <target>Tags</target>
+      </trans-unit>
       <trans-unit id="9d6de983da0e08af210246e64f8b4f21" resname="post.slug.label">
         <source>post.slug.label</source>
         <target>slug</target>
@@ -49,10 +57,6 @@
       <trans-unit id="9ca9f4b18e4766df423e4ff4a092b551" resname="post.updated.label">
         <source>post.updated.label</source>
         <target>updated at</target>
-      </trans-unit>
-      <trans-unit id="f4bedfb9475208263ca527a8d0ab2d38" resname="post.back_to_list.label">
-        <source>post.back_to_list.label</source>
-        <target>back to the list</target>
       </trans-unit>
       <trans-unit id="e13907c41eae7d3558c764f8b94c812a" resname="post.delete.label">
         <source>post.delete.label</source>

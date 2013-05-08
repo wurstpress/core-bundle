@@ -48,7 +48,7 @@ class Tagging extends BaseTagging
      * @param integer $tag
      * @return Tagging
      */
-    public function setTag($tag)
+    public function setTag(\DoctrineExtensions\Taggable\Entity\Tag $tag)
     {
         $this->tag = $tag;
     
