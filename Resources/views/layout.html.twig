@@ -4,10 +4,9 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Welcome!{% endblock %}</title>
-    {% stylesheets
+    {% stylesheets output="/bundles/wurstpresscore/css/main.css"
         '@WurstpressCoreBundle/Resources/assets/twitter-bootstrap/css/bootstrap.css'
         '@WurstpressCoreBundle/Resources/assets/twitter-bootstrap/css/wurstpress.css'
-        filter='cssrewrite'
     %}
     <link rel="stylesheet" href="{{ asset_url }}"/>
     {% endstylesheets %}
@@ -17,25 +16,25 @@
 
     {% render url('wurstpress_navigation') %}
 
-<div class="container-fluid">
-    <div class="row-fluid">
+    <div class="container-fluid">
+        <div class="row-fluid">
 
-        <div class="span2">
-            <div class="well sidebar-nav">
-                <ul class="nav nav-list">
-                    <li class="nav-header">Blog</li>
-                    <li class="active"><a href="#">Posts</a></li>
-                    <li><a href="#">Pages</a></li>
-                    <li><a href="#">Media</a></li>
-                    <li><a href="#">Comments</a></li>
-                </ul>
-            </div><!--/.well -->
+            <div class="span2">
+                <div class="well sidebar-nav">
+                    <ul class="nav nav-list">
+                        <li class="nav-header">Blog</li>
+                        <li class="active"><a href="#">Posts</a></li>
+                        <li><a href="#">Pages</a></li>
+                        <li><a href="#">Media</a></li>
+                        <li><a href="#">Comments</a></li>
+                    </ul>
+                </div><!--/.well -->
+            </div>
+
+            {% block body %}{% endblock %}
+
         </div>
-
-        {% block body %}{% endblock %}
-
     </div>
-</div>
 
 {% javascripts
     '@WurstpressCoreBundle/Resources/assets/generic/js/jquery.js'
