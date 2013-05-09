@@ -7,7 +7,7 @@
         <h1>{{ 'post.create.label'|trans({}, 'WurstpressCoreBundle')|capitalize }}</h1>
 
         <form action="{{ path('post_create') }}" method="post" {{ form_enctype(form) }} class="form-horizontal">
-            {{ form_widget(form) }}
+            {% include 'WurstpressCoreBundle:Post:form.html.twig' with { 'form': form } %}
             <p>
                 <button type="submit" class="btn btn-primary">{{ 'post.create.label'|trans({}, 'WurstpressCoreBundle')|capitalize }}</button>
             </p>

@@ -1,0 +1,12 @@
+{{ form_errors(form) }}
+
+{{ form_row(form.title) }}
+
+<div class="control-group">
+    {{ form_label(form.content) }}
+    <div class="controls">
+        {{ form_widget(form.content) }}
+    </div>
+</div>
+
+{{ form_rest(form) }}

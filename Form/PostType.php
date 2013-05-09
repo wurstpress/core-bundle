@@ -17,7 +17,7 @@ class PostType extends AbstractType
 
         $builder
             ->add('title')
-            ->add('content','textarea', [ 'attr' => [ 'class' => 'ckeditor' ]])
+            ->add('content','ckeditor', ['config_name' => 'minimal'])
             ->add('tags','text', [ 'mapped' => false, 'data' => $tags ])
         ;
     }
