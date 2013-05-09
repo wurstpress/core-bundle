@@ -24,8 +24,8 @@ class TaggableTest extends AppTestCase
         $this->assertEquals(5, $tag->getTagging(), 'getter and setter do not talk to each other');
 
         $tagging = new Tagging();
-        $tagging->setTag(3);
-        $this->assertEquals(3, $tagging->getTag(), 'getter and setter do not talk to each other');
+        $tagging->setTag($tag);
+        $this->assertEquals($tag, $tagging->getTag(), 'getter and setter do not talk to each other');
     }
 
     public function testPersistence()
