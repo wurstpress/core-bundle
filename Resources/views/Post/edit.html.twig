@@ -6,7 +6,7 @@
 
     <h1>Post edit</h1>
 
-    <form action="{{ path('post_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }} class="form-horizontal">
+    <form action="{{ path('wurstpress_post_update', { 'id': entity.id }) }}" method="post" {{ form_enctype(edit_form) }} class="form-horizontal">
         <input type="hidden" name="_method" value="PUT" />
         {% include 'WurstpressCoreBundle:Post:form.html.twig' with { 'form': edit_form } %}
         <p>
@@ -16,10 +16,10 @@
 
         <ul class="inline">
     <li>
-        <a href="{{ path('post') }}" class="btn">Back to the list</a>
+        <a href="{{ path('wurstpress_post') }}" class="btn">Back to the list</a>
     </li>
     <li>
-        <form action="{{ path('post_delete', { 'id': entity.id }) }}" method="post">
+        <form action="{{ path('wurstpress_post_delete', { 'id': entity.id }) }}" method="post">
             <input type="hidden" name="_method" value="DELETE" />
             {{ form_widget(delete_form) }}
             <button type="submit" class="btn btn-danger">Delete</button>

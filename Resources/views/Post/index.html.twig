@@ -24,10 +24,10 @@
                     <td class="span2">
                         <ul class="inline">
                             <li>
-                                <a href="{{ path('post_show', { 'id': entity.id }) }}" class="btn btn-mini">{{ 'post.show.label'|trans({}, 'WurstpressCoreBundle') }}</a>
+                                <a href="{{ path('wurstpress_post_show', { 'id': entity.id }) }}" class="btn btn-mini">{{ 'post.show.label'|trans({}, 'WurstpressCoreBundle') }}</a>
                             </li>
                             <li>
-                                <a href="{{ path('post_edit', { 'id': entity.id }) }}" class="btn btn-mini btn-success">{{ 'post.edit.label'|trans({}, 'WurstpressCoreBundle') }}</a>
+                                <a href="{{ path('wurstpress_post_edit', { 'id': entity.id }) }}" class="btn btn-mini btn-success">{{ 'post.edit.label'|trans({}, 'WurstpressCoreBundle') }}</a>
                             </li>
                         </ul>
                     </td>
@@ -42,7 +42,7 @@
 
         <ul class="inline">
             <li>
-                <a href="{{ path('post_new') }}" class="btn">{{ 'post.create.label'|trans({}, 'WurstpressCoreBundle')|capitalize }}</a>
+                <a href="{{ path('wurstpress_post_new') }}" class="btn">{{ 'post.create.label'|trans({}, 'WurstpressCoreBundle')|capitalize }}</a>
             </li>
         </ul>
         </div>

@@ -37,13 +37,13 @@
 
         <ul class="inline">
             <li>
-                <a href="{{ path('post') }}" class="btn">{{ 'post.back_to_list.label'|trans({}, 'WurstpressCoreBundle')|capitalize }}</a>
+                <a href="{{ path('wurstpress_post') }}" class="btn">{{ 'post.back_to_list.label'|trans({}, 'WurstpressCoreBundle')|capitalize }}</a>
             </li>
             <li>
-                <a href="{{ path('post_edit', { 'id': entity.id }) }}" class="btn btn-success">{{ 'post.edit.label'|trans({}, 'WurstpressCoreBundle')|capitalize }}</a>
+                <a href="{{ path('wurstpress_post_edit', { 'id': entity.id }) }}" class="btn btn-success">{{ 'post.edit.label'|trans({}, 'WurstpressCoreBundle')|capitalize }}</a>
             </li>
             <li>
-                <form action="{{ path('post_delete', { 'id': entity.id }) }}" method="post">
+                <form action="{{ path('wurstpress_post_delete', { 'id': entity.id }) }}" method="post">
                     <input type="hidden" name="_method" value="DELETE"/>
                     {{ form_widget(delete_form) }}
                     <button type="submit" class="btn btn-danger">{{ 'post.delete.label'|trans({}, 'WurstpressCoreBundle')|capitalize }}</button>

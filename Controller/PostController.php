@@ -47,7 +47,7 @@ class PostController extends Controller
 
             $this->addTags($form, $entity);
 
-            return $this->redirect($this->generateUrl('post_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('wurstpress_post_show', array('id' => $entity->getId())));
         }
 
         return $this->render('WurstpressCoreBundle:Post:new.html.twig', array(
@@ -147,7 +147,7 @@ class PostController extends Controller
 
             $this->addTags($editForm, $entity);
 
-            return $this->redirect($this->generateUrl('post_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('wurstpress_post_edit', array('id' => $id)));
         }
 
         return $this->render('WurstpressCoreBundle:Post:edit.html.twig', array(
@@ -178,7 +178,7 @@ class PostController extends Controller
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('post'));
+        return $this->redirect($this->generateUrl('wurstpress_post'));
     }
 
     /**
