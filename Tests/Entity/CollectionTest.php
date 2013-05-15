@@ -4,6 +4,7 @@ namespace Wurstpress\CoreBundle\Tests\Entity;
 
 use Doctrine\Common\Inflector\Inflector;
 use Wurstpress\CoreBundle\Entity\Collection;
+use Wurstpress\CoreBundle\Entity\Document;
 use Wurstpress\CoreBundle\Tests\AppTestCase;
 
 class CollectionTest extends AppTestCase
@@ -66,5 +67,21 @@ class CollectionTest extends AppTestCase
         $this->em->flush();
 
         $this->assertNotNull($entity->getId());
+    }
+
+    public function testRelations()
+    {
+        $entity = new Collection();
+        $document = new Document();
+
+        $this->assertEquals(0, count($entity->getDocuments()));
+
+        $entity->addDocument($document);
+
+        $this->assertEquals(1, count($entity->getDocuments()));
+
+        $entity->removeDocument($document);
+
+        $this->assertEquals(0, count($entity->getDocuments()));
     }
 }

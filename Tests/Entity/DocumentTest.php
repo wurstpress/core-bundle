@@ -3,6 +3,7 @@
 namespace Wurstpress\CoreBundle\Tests\Entity;
 
 use Doctrine\Common\Inflector\Inflector;
+use Wurstpress\CoreBundle\Entity\Collection;
 use Wurstpress\CoreBundle\Entity\Document;
 use Wurstpress\CoreBundle\Tests\AppTestCase;
 
@@ -211,5 +212,17 @@ class DocumentTest extends AppTestCase
         $entity->setFile($file);
 
         $entity->preUpload();
+    }
+
+    public function testRelations()
+    {
+        $entity = new Document();
+        $collection = new Collection();
+
+        $this->assertNull($entity->getCollection());
+
+        $entity->setCollection($collection);
+
+        $this->assertNotNull($entity->getCollection());
     }
 }
