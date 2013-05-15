@@ -1,0 +1,21 @@
+wurstpress_document:
+    pattern:  /
+    defaults: { _controller: "WurstpressCoreBundle:Document:index" }
+
+wurstpress_document_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "WurstpressCoreBundle:Document:show" }
+
+wurstpress_document_new:
+    pattern:  /new
+    defaults: { _controller: "WurstpressCoreBundle:Document:new" }
+
+wurstpress_document_create:
+    pattern:  /create
+    defaults: { _controller: "WurstpressCoreBundle:Document:create" }
+    requirements: { _method: post }
+
+wurstpress_document_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "WurstpressCoreBundle:Document:delete" }
+    requirements: { _method: post|delete }

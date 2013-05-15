@@ -77,6 +77,12 @@ class Document
      */
     private $file;
 
+    /**
+     * non database properties
+     */
+    private $web_dir;
+    private $upload_dir = 'uploads/documents';
+
 
     /**
      * Get id
@@ -271,8 +277,13 @@ class Document
      */
     public function preUpload()
     {
-        if (null !== $this->file)
-            $this->path = sprintf('%s.%s', sha1(uniqid(mt_rand(), true)), $this->file->guessExtension());
+        if (null !== $this->getFile())
+        {
+            $this->path = sprintf('%s.%s', sha1(uniqid(mt_rand(), true)), $this->getFile()->guessExtension());
+            $this->setName($this->getFile()->getClientOriginalName());
+            $this->setSize($this->getFile()->getClientSize());
+            $this->setMimeType($this->getFile()->getClientMimeType());
+        }
     }
 
     /**
@@ -302,5 +313,10 @@ class Document
     public function __toString()
     {
         return $this->getWebPath() ?: '';
+    }
+
+    public function isImage()
+    {
+        return in_array($this->getMimeType(), [ 'image/jpeg', 'image/png', 'image/gif' ]);
     }
 }

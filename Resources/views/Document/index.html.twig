@@ -1,0 +1,51 @@
+{% extends 'WurstpressCoreBundle::layout.html.twig' %}
+
+{% block body -%}
+
+    <div class="span10">
+        <h1>Document list</h1>
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Preview</th>
+                <th>Name</th>
+                <th>Mime type</th>
+                <th>Size</th>
+                <th>Created</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for entity in entities %}
+                <tr>
+                    <td>
+                        {% if entity.isImage() %}
+                        <img src="{{ entity.getWebPath() | imagine_filter('default_thumb') }}" />
+                        {% else %}
+                        <img src="http://placehold.it/120x90.png&text=N\A" />
+                        {% endif %}
+                    </td>
+                    <td>{{ entity.name }}</td>
+                    <td>{{ entity.mimeType }}</td>
+                    <td>{{ entity.size }}</td>
+                    <td>{% if entity.created %}{{ entity.created|date('Y-m-d H:i:s') }}{% endif %}</td>
+                    <td>
+                        <ul class="inline">
+                            <li>
+                                <a href="{{ path('wurstpress_document_show', { 'id': entity.id }) }}" class="btn btn-mini">show</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <ul class="inline">
+            <li>
+                <a href="{{ path('wurstpress_document_new') }}" class="btn">Create a new entry</a>
+            </li>
+        </ul>
+    </div>
+{% endblock %}

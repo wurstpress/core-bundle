@@ -1,0 +1,21 @@
+{% extends 'WurstpressCoreBundle::layout.html.twig' %}
+
+{% block body -%}
+
+<div class="span10">
+    <h1>Document creation</h1>
+
+    <form action="{{ path('wurstpress_document_create') }}" method="post" {{ form_enctype(form) }} class="form-horizontal">
+        {{ form_widget(form) }}
+        <p>
+            <button type="submit" class="btn btn-primary">Create</button>
+        </p>
+    </form>
+
+        <ul class="inline">
+    <li>
+        <a href="{{ path('wurstpress_document') }}" class="btn">Back to the list</a>
+    </li>
+</ul>
+    </div>
+{% endblock %}

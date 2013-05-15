@@ -5,3 +5,7 @@ navigation:
 WurstpressCoreBundle_post:
     resource: "@WurstpressCoreBundle/Resources/config/routing/post.yml"
     prefix:   /post
+
+WurstpressCoreBundle_document:
+    resource: "@WurstpressCoreBundle/Resources/config/routing/document.yml"
+    prefix:   /document

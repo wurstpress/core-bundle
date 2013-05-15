@@ -1,0 +1,52 @@
+{% extends 'WurstpressCoreBundle::layout.html.twig' %}
+
+{% block body -%}
+
+    <div class="span10">
+        <h1>Document</h1>
+
+        <table class="table">
+            <tbody>
+            <tr>
+                <th>Preview</th>
+                <td>
+                    {% if entity.isImage() %}
+                        <img src="{{ entity.getWebPath() | imagine_filter('default_thumb') }}" />
+                    {% else %}
+                        <img src="http://placehold.it/120x90.png&text=N\A" />
+                    {% endif %}
+                </td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ entity.name }}</td>
+            </tr>
+            <tr>
+                <th>Mimetype</th>
+                <td>{{ entity.mimeType }}</td>
+            </tr>
+            <tr>
+                <th>Size</th>
+                <td>{{ entity.size }}</td>
+            </tr>
+            <tr>
+                <th>Created</th>
+                <td>{{ entity.created|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            </tbody>
+        </table>
+
+        <ul class="inline">
+            <li>
+                <a href="{{ path('wurstpress_document') }}">Back to the list</a>
+            </li>
+            <li>
+                <form action="{{ path('wurstpress_document_delete', { 'id': entity.id }) }}" method="post">
+                    <input type="hidden" name="_method" value="DELETE"/>
+                    {{ form_widget(delete_form) }}
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </li>
+        </ul>
+    </div>
+{% endblock %}
