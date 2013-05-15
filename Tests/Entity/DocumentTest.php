@@ -169,4 +169,47 @@ class DocumentTest extends AppTestCase
 
         $entity->upload();
     }
+
+    public function testIsImage()
+    {
+        $entity = new Document();
+
+        $entity->setMimeType('text/html');
+
+        $this->assertFalse($entity->isImage());
+
+        $entity->setMimeType('image/jpeg');
+
+        $this->assertTrue($entity->isImage());
+    }
+
+    public function testPreUpload()
+    {
+        $entity = new Document();
+
+        $file = $this
+            ->getMockBuilder('Symfony\Component\HttpFoundation\File\UploadedFile')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $file
+            ->expects($this->once())
+            ->method('guessExtension');
+
+        $file
+            ->expects($this->once())
+            ->method('getClientOriginalName');
+
+        $file
+            ->expects($this->once())
+            ->method('getClientSize');
+
+        $file
+            ->expects($this->once())
+            ->method('getClientMimeType');
+
+        $entity->setFile($file);
+
+        $entity->preUpload();
+    }
 }

@@ -72,6 +72,12 @@ class Document
     private $updated;
 
     /**
+     * @ORM\ManyToOne(targetEntity="Collection", inversedBy="documents")
+     * @ORM\JoinColumn(name="collection_id", referencedColumnName="id", nullable=true)
+     */
+    protected $collection;
+
+    /**
      * @Assert\File(maxSize="6000000")
      * @Assert\NotBlank()
      */
@@ -318,5 +324,28 @@ class Document
     public function isImage()
     {
         return in_array($this->getMimeType(), [ 'image/jpeg', 'image/png', 'image/gif' ]);
+    }
+
+    /**
+     * Set collection
+     *
+     * @param \Wurstpress\CoreBundle\Entity\Collection $collection
+     * @return Document
+     */
+    public function setCollection(\Wurstpress\CoreBundle\Entity\Collection $collection = null)
+    {
+        $this->collection = $collection;
+
+        return $this;
+    }
+
+    /**
+     * Get collection
+     *
+     * @return \Wurstpress\CoreBundle\Entity\Collection 
+     */
+    public function getCollection()
+    {
+        return $this->collection;
     }
 }
