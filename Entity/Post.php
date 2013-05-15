@@ -7,7 +7,7 @@ use DoctrineExtensions\Taggable\Taggable;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\Collection as DoctrineCollection;
 use Wurstpress\CoreBundle\Common\CreatedUpdatedTrait;
 
 
@@ -190,7 +190,7 @@ class Post implements Taggable
     /**
      * Get comments
      *
-     * @return Collection
+     * @return DoctrineCollection
      */
     public function getComments()
     {
@@ -200,10 +200,10 @@ class Post implements Taggable
     /**
      * Overrides current comments
      *
-     * @param Collection $comments
+     * @param DoctrineCollection $comments
      * @return Post
      */
-    public function setComments(Collection $comments)
+    public function setComments(DoctrineCollection $comments)
     {
         $this->comments = $comments;
 
@@ -243,7 +243,7 @@ class Post implements Taggable
     /**
      * Returns the collection of tags for this Taggable entity
      *
-     * @return Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getTags()
     {
