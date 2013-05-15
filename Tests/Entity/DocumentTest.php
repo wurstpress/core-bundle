@@ -23,7 +23,8 @@ class DocumentTest extends AppTestCase
         foreach ([
             'name',
             'mime_type',
-            'path'
+            'path',
+            'file'
          ] as $field)
         {
 
@@ -77,5 +78,95 @@ class DocumentTest extends AppTestCase
         $this->em->flush();
 
         $this->assertNotNull($entity->getId());
+    }
+
+    public function testToString()
+    {
+        $entity = new Document();
+
+        $this->assertEquals('', "$entity", 'Entity toString is not working');
+
+        $entity->setPath('test.png');
+
+        $this->assertEquals('uploads/documents/test.png', "$entity", 'Entity toString is not working');
+    }
+
+    public function testConstructor()
+    {
+        $entity = new Document();
+
+        $this->assertNull($entity->getAbsolutePath(), 'Absolute path is not null');
+        $this->assertNull($entity->getWebPath(), 'web path is not null');
+
+        $entity->setPath('path.jpg');
+
+        $this->assertEquals(
+            realpath(sprintf('%s/../../../../../web/uploads/documents/path.jpg', __DIR__)),
+            realpath($entity->getAbsolutePath()),
+            'Absolute path is not correct'
+        );
+        $this->assertEquals('uploads/documents/path.jpg', $entity->getWebPath(), 'WebPath is not web');
+
+        $entity = new Document('/var/www/public_html','wp-uploads');
+        $entity->setPath('path.jpg');
+
+        $this->assertEquals(
+            '/var/www/public_html/wp-uploads/path.jpg',
+            $entity->getAbsolutePath(),
+            'Absolute path is not correct'
+        );
+        $this->assertEquals('wp-uploads/path.jpg', $entity->getWebPath(), 'WebPath is not web');
+    }
+
+    public function testSetWebAndUploadDir()
+    {
+        $entity = new Document();
+        $entity->setPath('test.png');
+
+        $this->assertEquals('uploads/documents/test.png', "$entity", 'Entity toString is not working');
+
+        $entity->setUploadDir('wp-uploads');
+        $entity->setWebDir('/var/www/public_html');
+
+        $this->assertEquals('wp-uploads/test.png', "$entity", 'Entity toString is not working');
+
+        $this->assertEquals(
+            '/var/www/public_html/wp-uploads/test.png',
+            $entity->getAbsolutePath(),
+            'Absolute path is not correct'
+        );
+    }
+
+    public function testRemoveUpload()
+    {
+        $entity = new Document(sys_get_temp_dir(),'.');
+
+        $entity->setPath('test.file');
+        touch($entity->getAbsolutePath());
+
+        $this->assertTrue(file_exists($entity->getAbsolutePath()));
+
+        $entity->removeUpload();
+
+        $this->assertFalse(file_exists($entity->getAbsolutePath()));
+    }
+
+    public function testUpload()
+    {
+        $entity = new Document(sys_get_temp_dir(),'.');
+        $entity->setPath('test.file');
+
+        $file = $this
+            ->getMockBuilder('Symfony\Component\HttpFoundation\File\UploadedFile')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $file
+            ->expects($this->once())
+            ->method('move');
+
+        $entity->setFile($file);
+
+        $entity->upload();
     }
 }

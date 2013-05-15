@@ -5,12 +5,14 @@ namespace Wurstpress\CoreBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Wurstpress\CoreBundle\Common\CreatedUpdatedTrait;
 use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Document
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Wurstpress\CoreBundle\Entity\DocumentRepository")
+ * @ORM\HasLifecycleCallbacks
  */
 class Document
 {
@@ -68,6 +70,12 @@ class Document
      * @ORM\Column(name="updated", type="datetime")
      */
     private $updated;
+
+    /**
+     * @Assert\File(maxSize="6000000")
+     * @Assert\NotBlank()
+     */
+    private $file;
 
 
     /**
@@ -170,5 +178,129 @@ class Document
     public function getSize()
     {
         return $this->size;
+    }
+
+    /**
+     * Get file
+     *
+     * @return $file
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
+     * Set file
+     *
+     * @param $file
+     * @return Document
+     */
+    public function setFile($file)
+    {
+        $this->file = $file;
+
+        return $this;
+    }
+
+    /**
+     * @param null $web_dir
+     * @param null $upload_dir
+     */
+    public function __construct($web_dir = null, $upload_dir = null)
+    {
+        $this->web_dir = $web_dir ?: sprintf('%s/../../../../web', __DIR__);
+        $this->upload_dir = $upload_dir ?: 'uploads/documents';
+    }
+
+    /**
+     * @param string $dir
+     * @return Document
+     */
+    public function setWebDir($dir)
+    {
+        $this->web_dir = $dir;
+
+        return $this;
+    }
+
+    /**
+     * @param $dir
+     * @return Document
+     */
+    public function setUploadDir($dir)
+    {
+        $this->upload_dir = $dir;
+
+        return $this;
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getAbsolutePath()
+    {
+        return null === $this->path
+            ? null
+            : sprintf('%s/%s', $this->getUploadRootDir(), $this->path);
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getWebPath()
+    {
+        return null === $this->path
+            ? null
+            : sprintf('%s/%s', $this->upload_dir, $this->path);
+    }
+
+    /**
+     * @return string
+     */
+    protected function getUploadRootDir()
+    {
+        // the absolute directory path where uploaded
+        // documents should be saved
+        return sprintf('%s/%s', $this->web_dir, $this->upload_dir);
+    }
+
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function preUpload()
+    {
+        if (null !== $this->file)
+            $this->path = sprintf('%s.%s', sha1(uniqid(mt_rand(), true)), $this->file->guessExtension());
+    }
+
+    /**
+     * @ORM\PostRemove()
+     */
+    public function removeUpload()
+    {
+        if ($file = $this->getAbsolutePath()) unlink($file);
+    }
+
+    /**
+     * @ORM\PostPersist()
+     * @ORM\PostUpdate()
+     */
+    public function upload()
+    {
+        if (null === $this->file) return;
+
+        $this->file->move($this->getUploadRootDir(), $this->path);
+
+        unset($this->file);
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->getWebPath() ?: '';
     }
 }
