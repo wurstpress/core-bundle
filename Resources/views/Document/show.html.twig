@@ -22,6 +22,10 @@
                 <td>{{ entity.name }}</td>
             </tr>
             <tr>
+                <th>Collection</th>
+                <td>{% if entity.collection %}{{ entity.collection }}{% endif %}</td>
+            </tr>
+            <tr>
                 <th>Mimetype</th>
                 <td>{{ entity.mimeType }}</td>
             </tr>

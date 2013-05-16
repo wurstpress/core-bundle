@@ -1,0 +1,40 @@
+{% extends 'WurstpressCoreBundle::layout.html.twig' %}
+
+{% block body -%}
+
+<div class="span10">
+    <h1>Collection list</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entity in entities %}
+            <tr>
+                <td>{{ entity.name }}</td>
+                <td>
+                <ul class="inline">
+                    <li>
+                        <a href="{{ path('wurstpress_collection_show', { 'id': entity.id }) }}" class="btn btn-mini">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('wurstpress_collection_edit', { 'id': entity.id }) }}" class="btn btn-mini btn-primary">edit</a>
+                    </li>
+                </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+        <ul class="inline">
+        <li>
+            <a href="{{ path('wurstpress_collection_new') }}" class="btn">Create a new entry</a>
+        </li>
+    </ul>
+</div>
+{% endblock %}

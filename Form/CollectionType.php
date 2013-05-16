@@ -6,26 +6,24 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class DocumentType extends AbstractType
+class CollectionType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('file','file')
-            ->add('collection')
+            ->add('name')
         ;
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Wurstpress\CoreBundle\Entity\Document',
-            'csrf_protection' => false
+            'data_class' => 'Wurstpress\CoreBundle\Entity\Collection'
         ));
     }
 
     public function getName()
     {
-        return 'wurstpress_document';
+        return 'wurstpress_corebundle_collectiontype';
     }
 }

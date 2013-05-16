@@ -10,6 +10,7 @@
             <tr>
                 <th>Preview</th>
                 <th>Name</th>
+                <th>Collection</th>
                 <th>Mime type</th>
                 <th>Size</th>
                 <th>Created</th>
@@ -27,6 +28,7 @@
                         {% endif %}
                     </td>
                     <td>{{ entity.name }}</td>
+                    <td>{% if entity.collection %}{{ entity.collection }}{% endif %}</td>
                     <td>{{ entity.mimeType }}</td>
                     <td>{{ entity.size }}</td>
                     <td>{% if entity.created %}{{ entity.created|date('Y-m-d H:i:s') }}{% endif %}</td>

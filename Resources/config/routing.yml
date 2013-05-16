@@ -9,3 +9,7 @@ WurstpressCoreBundle_post:
 WurstpressCoreBundle_document:
     resource: "@WurstpressCoreBundle/Resources/config/routing/document.yml"
     prefix:   /document
+
+WurstpressCoreBundle_collection:
+    resource: "@WurstpressCoreBundle/Resources/config/routing/collection.yml"
+    prefix:   /collection

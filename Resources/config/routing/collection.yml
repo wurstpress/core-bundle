@@ -1,0 +1,34 @@
+wurstpress_collection:
+    pattern:  /
+    defaults: { _controller: "WurstpressCoreBundle:Collection:index" }
+
+wurstpress_collection_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "WurstpressCoreBundle:Collection:show" }
+
+wurstpress_collection_new:
+    pattern:  /new
+    defaults: { _controller: "WurstpressCoreBundle:Collection:new" }
+
+wurstpress_collection_create:
+    pattern:  /create
+    defaults: { _controller: "WurstpressCoreBundle:Collection:create" }
+    requirements: { _method: post }
+
+wurstpress_collection_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "WurstpressCoreBundle:Collection:edit" }
+
+wurstpress_collection_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "WurstpressCoreBundle:Collection:update" }
+    requirements: { _method: post|put }
+
+wurstpress_collection_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "WurstpressCoreBundle:Collection:delete" }
+    requirements: { _method: post|delete }
+
+wurstpress_collection_documents:
+    pattern:  /{id}/documents
+    defaults: { _controller: "WurstpressCoreBundle:Collection:documents" }

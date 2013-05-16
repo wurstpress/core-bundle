@@ -1,0 +1,44 @@
+{% extends 'WurstpressCoreBundle::layout.html.twig' %}
+
+{% block body -%}
+
+<div class="span10">
+    <h1>Collection</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Name</th>
+                <td>{{ entity.name }}</td>
+            </tr>
+            <tr>
+                <th>Created</th>
+                <td>{{ entity.created|date('Y-m-d H:i:s') }}</td>
+            </tr>
+            <tr>
+                <th>Updated</th>
+                <td>{{ entity.updated|date('Y-m-d H:i:s') }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+        <ul class="inline">
+    <li>
+        <a href="{{ path('wurstpress_collection') }}" class="btn">Back to the list</a>
+    </li>
+    <li>
+        <a href="{{ path('wurstpress_collection_edit', { 'id': entity.id }) }}" class="btn btn-primary">Edit</a>
+    </li>
+    <li>
+        <form action="{{ path('wurstpress_collection_delete', { 'id': entity.id }) }}" method="post">
+            <input type="hidden" name="_method" value="DELETE" />
+            {{ form_widget(delete_form) }}
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+    </li>
+            <li>
+                <a href="{{ path('wurstpress_collection_documents', { 'id': entity.id }) }}" class="btn btn-primary">Upload documents</a>
+            </li>
+</ul>
+</div>
+{% endblock %}

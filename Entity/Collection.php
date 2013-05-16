@@ -127,4 +127,9 @@ class Collection
     {
         return $this->documents;
     }
+
+    public function __toString()
+    {
+        return $this->getName();
+    }
 }
