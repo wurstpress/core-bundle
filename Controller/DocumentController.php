@@ -18,14 +18,15 @@ class DocumentController extends Controller
      * Lists all Document entities.
      *
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('WurstpressCoreBundle:Document')->findAll();
+        $entities = $em->getRepository('WurstpressCoreBundle:Document')->getPaginator($request, $em);
 
         return $this->render('WurstpressCoreBundle:Document:index.html.twig', array(
             'entities' => $entities,
+            'total' => count($entities)
         ));
     }
 

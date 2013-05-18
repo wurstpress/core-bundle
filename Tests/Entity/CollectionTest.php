@@ -84,4 +84,12 @@ class CollectionTest extends AppTestCase
 
         $this->assertEquals(0, count($entity->getDocuments()));
     }
+
+    public function testToString()
+    {
+        $entity = new Collection();
+        $entity->setName('Test Name');
+
+        $this->assertEquals('Test Name', "$entity");
+    }
 }

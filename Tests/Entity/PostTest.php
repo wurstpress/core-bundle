@@ -2,6 +2,7 @@
 
 namespace Wurstpress\CoreBundle\Tests\Entity;
 
+use Wurstpress\CoreBundle\Entity\Collection;
 use Wurstpress\CoreBundle\Entity\Post;
 use Wurstpress\CoreBundle\Entity\Comment;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -92,6 +93,18 @@ class PostTest extends AppTestCase
         $this->em->persist($post);
 
         $this->assertEquals(5, count($post->getComments()), 'Post has 5 comments, not 6 as the collection is overridden');
+    }
+
+    public function testCollectionRelation()
+    {
+        $entity = new Post();
+
+        $collection = new Collection();
+
+        $this->assertNull($entity->getCollection());
+        $fluent = $entity->setCollection($collection);
+        $this->assertEquals($entity, $fluent);
+        $this->assertEquals($collection, $entity->getCollection());
     }
 
     public function testRemoveComment()

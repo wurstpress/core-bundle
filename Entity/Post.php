@@ -76,6 +76,12 @@ class Post implements Taggable
     private $comments;
 
     /**
+     * @var Collection $collection
+     * @ORM\ManyToOne(targetEntity="Collection")
+     */
+    private $collection;
+
+    /**
      * @var $tags
      */
     private $tags;
@@ -250,5 +256,28 @@ class Post implements Taggable
         $this->tags = $this->tags ?: new ArrayCollection();
 
         return $this->tags;
+    }
+
+    /**
+     * Set collection
+     *
+     * @param Collection $collection
+     * @return Post
+     */
+    public function setCollection(Collection $collection = null)
+    {
+        $this->collection = $collection;
+
+        return $this;
+    }
+
+    /**
+     * Get collection
+     *
+     * @return Collection
+     */
+    public function getCollection()
+    {
+        return $this->collection;
     }
 }

@@ -19,6 +19,7 @@ class PostType extends AbstractType
             ->add('title')
             ->add('content','ckeditor', ['config_name' => 'minimal'])
             ->add('tags','text', [ 'mapped' => false, 'data' => $tags ])
+            ->add('collection')
         ;
     }
 

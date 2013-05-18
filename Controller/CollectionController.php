@@ -18,14 +18,15 @@ class CollectionController extends Controller
      * Lists all Collection entities.
      *
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('WurstpressCoreBundle:Collection')->findAll();
+        $entities = $em->getRepository('WurstpressCoreBundle:Collection')->getPaginator($request, $em);
 
         return $this->render('WurstpressCoreBundle:Collection:index.html.twig', array(
             'entities' => $entities,
+            'total' => count($entities)
         ));
     }
 

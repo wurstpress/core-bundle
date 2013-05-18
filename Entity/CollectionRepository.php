@@ -3,6 +3,7 @@
 namespace Wurstpress\CoreBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Tools\Pagination\Paginator;
 
 /**
  * CollectionRepository
@@ -12,4 +13,16 @@ use Doctrine\ORM\EntityRepository;
  */
 class CollectionRepository extends EntityRepository
 {
+    public function getPaginator($request, $entityManager)
+    {
+        $dql = "
+        SELECT c
+        FROM WurstpressCoreBundle:Collection c
+        ";
+        $query = $entityManager->createQuery($dql)
+            ->setFirstResult($request->get('offset') ?: 0)
+            ->setMaxResults($request->get('limit') ?: 100);
+
+        return new Paginator($query, $fetchJoinCollection = true);
+    }
 }

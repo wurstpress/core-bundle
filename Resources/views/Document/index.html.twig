@@ -44,6 +44,8 @@
             </tbody>
         </table>
 
+        {% include 'WurstpressCoreBundle::pagination.html.twig' with { 'entities': entities, 'total': total } %}
+
         <ul class="inline">
             <li>
                 <a href="{{ path('wurstpress_document_new') }}" class="btn">Create a new entry</a>

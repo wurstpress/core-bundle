@@ -46,6 +46,10 @@
         <source>post.tags.label</source>
         <target>Tags</target>
       </trans-unit>
+      <trans-unit id="d732156c11bedbcf64ba1a0fe09c4c7e" resname="post.collection.label">
+        <source>post.collection.label</source>
+        <target>Document collection</target>
+      </trans-unit>
       <trans-unit id="9d6de983da0e08af210246e64f8b4f21" resname="post.slug.label">
         <source>post.slug.label</source>
         <target>slug</target>
