@@ -270,7 +270,7 @@ class Document
     /**
      * @return string
      */
-    protected function getUploadRootDir()
+    public function getUploadRootDir()
     {
         // the absolute directory path where uploaded
         // documents should be saved
@@ -308,7 +308,20 @@ class Document
     {
         if (null === $this->file) return;
 
-        $this->file->move($this->getUploadRootDir(), $this->path);
+        try
+        {
+            $this->file->move($this->getUploadRootDir(), $this->path);
+        }
+        catch(\Symfony\Component\HttpFoundation\File\Exception\FileException $e)
+        {
+            $regexp = sprintf('/^\%s/', sys_get_temp_dir());
+            if(preg_match($regexp, realpath($this->file->getPathname())))
+            {
+                // if file in in tmp folder it should be safe to copy it across.
+                copy($this->file->getPathname(), sprintf('%s/%s', $this->getUploadRootDir(), $this->path));
+            }
+            else throw $e;
+        }
 
         unset($this->file);
     }
