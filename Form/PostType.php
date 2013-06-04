@@ -18,8 +18,9 @@ class PostType extends AbstractType
         $builder
             ->add('title')
             ->add('content','ckeditor', ['config_name' => 'minimal'])
-            ->add('tags','text', [ 'mapped' => false, 'data' => $tags ])
+            ->add('tags','text', [ 'mapped' => false, 'data' => $tags, 'required' => false ])
             ->add('collection')
+            ->add('created', 'date', [ 'widget' => 'single_text' ])
         ;
     }
 
