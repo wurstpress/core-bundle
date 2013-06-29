@@ -2,7 +2,7 @@
 
 namespace Wurstpress\CoreBundle\Tests\Entity;
 
-use Doctrine\Common\Inflector\Inflector;
+use Doctrine\Common\Util\Inflector;
 use Wurstpress\CoreBundle\Entity\Collection;
 use Wurstpress\CoreBundle\Entity\Document;
 use Wurstpress\CoreBundle\Tests\AppTestCase;
