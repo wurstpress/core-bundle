@@ -1,0 +1,14 @@
+.dropzone .dz-preview .image-remove, .dropzone-previews .dz-preview .image-remove {
+    position: absolute;
+    bottom: -28px;
+    right: 3px;
+    height: 28px;
+    line-height: 28px;
+}
+.dropzone .dz-preview .image-remove a, .dropzone-previews .dz-preview .image-remove a {
+    cursor: pointer;
+    color: #f00;
+}
+.dropzone .dz-preview .image-remove a:hover, .dropzone-previews .dz-preview .image-remove a:hover {
+    color: #f66;
+}

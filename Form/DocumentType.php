@@ -12,15 +12,21 @@ class DocumentType extends AbstractType
     {
         $builder
             ->add('file','file')
-            ->add('collection')
         ;
+
+        if($options['collection_type'])
+            $builder->add('collection', $options['collection_type'], [ 'data' => $options['collection_id'] ]);
+        else
+            $builder->add('collection');
     }
 
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'Wurstpress\CoreBundle\Entity\Document',
-            'csrf_protection' => false
+            'csrf_protection' => false,
+            'collection_type' => null,
+            'collection_id' => null
         ));
     }
 

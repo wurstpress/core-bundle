@@ -5,5 +5,40 @@
 <div class="span10">
     <h1>Collection documents</h1>
 
+    <form action="{{ path('wurstpress_collection_documents', { 'id' : app.request.get('id')}) }}" method="post" class="dropzone" id="dropzone">
+
+        <div class="fallback">
+            {{ form_widget(form) }}
+            <button type="submit" class="pull-right">Upload</button>
+        </div>
+
+
+
+        {% if entity and entity.documents|length %}
+
+            <div class="dz-message">Please drag and drop images on this space or click on it</div>
+
+            {% for img in entity.documents if img.isImage() %}
+                <div class="dz-preview dz-processing dz-image-preview dz-success">
+                    <div class="dz-details">
+                        <div class="dz-filename"><span data-dz-name="">{{ img.name }}</span></div>
+                        <div class="dz-size" data-dz-size=""><strong>{{ '%.2f'|format(img.size/1024/1024) }}</strong> MB</div>
+                        <div class="image-remove"><a class="image-remove-trigger" href="{{ path('wurstpress_collection_documents', { 'id' : app.request.get('id'), 'delete' : img.id }) }}">✖</a></div>
+                        <img data-dz-thumbnail="" alt="{{ img.name }}" src="{{ img.getWebPath() | imagine_filter('dropzone') }}" class="preview">
+                    </div>
+                    <div class="dz-progress">
+                        <span class="dz-upload" data-dz-uploadprogress="" style="width: 100%;"></span>
+                    </div>
+                    <div class="dz-success-mark"><span>✔</span></div>
+                    <div class="dz-error-mark"><span>✘</span></div>
+                    <div class="dz-error-message"><span data-dz-errormessage=""></span></div>
+                </div>
+            {% endfor %}
+
+        {% endif %}
+
+
+    </form>
+
 </div>
 {% endblock %}

@@ -5,8 +5,11 @@ namespace Wurstpress\CoreBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+use Symfony\Component\HttpFoundation\Response;
 use Wurstpress\CoreBundle\Entity\Collection;
+use Wurstpress\CoreBundle\Entity\Document;
 use Wurstpress\CoreBundle\Form\CollectionType;
+use Wurstpress\CoreBundle\Form\DocumentType;
 
 /**
  * Collection controller.
@@ -160,8 +163,44 @@ class CollectionController extends Controller
             throw $this->createNotFoundException('Unable to find Collection entity.');
         }
 
+        if($request->get('delete'))
+        {
+            foreach($entity->getDocuments() as $document)
+            {
+                if($request->get('delete') == $document->getId())
+                {
+                    $document->setWebDir($this->container->getParameter('app.web_dir'));
+                    $em->remove($document);
+                    $em->flush();
+                    return new Response('OK');
+                }
+            }
+        }
+
+        $document = new Document();
+
+        $form = $this->createForm(new DocumentType(), $document, [
+            'collection_type' => 'hidden',
+            'collection_id' => $entity->getId()
+        ]);
+
+        if($request->isMethod('POST'))
+        {
+            $form->submit($request);
+
+            if($form->isValid())
+            {
+                $document->setCollection($entity);
+                $em->persist($document);
+                $em->flush();
+
+                return new Response($document->getId());
+            }
+        }
+
         return $this->render('WurstpressCoreBundle:Collection:documents.html.twig', array(
-            'entity' => $entity
+            'entity' => $entity,
+            'form' => $form->createView()
         ));
     }
 

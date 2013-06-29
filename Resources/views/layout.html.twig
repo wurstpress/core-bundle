@@ -7,6 +7,8 @@
     {% stylesheets output="/bundles/wurstpresscore/css/main.css"
         '@WurstpressCoreBundle/Resources/assets/twitter-bootstrap/css/bootstrap.css'
         '@WurstpressCoreBundle/Resources/assets/twitter-bootstrap/css/wurstpress.css'
+        '@WurstpressCoreBundle/Resources/public/css/dropzone.css'
+        '@WurstpressCoreBundle/Resources/public/css/wurstpress.css'
     %}
     <link rel="stylesheet" href="{{ asset_url }}"/>
     {% endstylesheets %}
@@ -45,6 +47,8 @@
 {% javascripts
     '@WurstpressCoreBundle/Resources/assets/generic/js/jquery.js'
     '@WurstpressCoreBundle/Resources/assets/twitter-bootstrap/js/bootstrap.js'
+    '@WurstpressCoreBundle/Resources/public/js/dropzone.js'
+    '@WurstpressCoreBundle/Resources/public/js/upload.js'
 %}
 <script type="text/javascript" src="{{ asset_url }}"></script>
 {% endjavascripts %}
