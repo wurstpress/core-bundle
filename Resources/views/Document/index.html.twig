@@ -5,6 +5,8 @@
     <div class="span10">
         <h1>Document list</h1>
 
+        {{ knp_pagination_render(entities) }}
+
         <table class="table">
             <thead>
             <tr>
@@ -44,7 +46,7 @@
             </tbody>
         </table>
 
-        {% include 'WurstpressCoreBundle::pagination.html.twig' with { 'entities': entities, 'total': total } %}
+        {{ knp_pagination_render(entities) }}
 
         <ul class="inline">
             <li>

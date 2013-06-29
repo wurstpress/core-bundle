@@ -22,11 +22,15 @@ class DocumentController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('WurstpressCoreBundle:Document')->getPaginator($request, $em);
+        $paginator  = $this->get('knp_paginator');
+        $entities = $paginator->paginate(
+            $em->getRepository('WurstpressCoreBundle:Document')->getAllQuery(),
+            $this->get('request')->query->get('page', 1),
+            50
+        );
 
         return $this->render('WurstpressCoreBundle:Document:index.html.twig', array(
-            'entities' => $entities,
-            'total' => count($entities)
+            'entities' => $entities
         ));
     }
 

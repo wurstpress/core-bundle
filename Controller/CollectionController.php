@@ -20,13 +20,17 @@ class CollectionController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
+        $em = $this->get('doctrine.orm.entity_manager');
 
-        $entities = $em->getRepository('WurstpressCoreBundle:Collection')->getPaginator($request, $em);
+        $paginator  = $this->get('knp_paginator');
+        $entities = $paginator->paginate(
+            $em->getRepository('WurstpressCoreBundle:Collection')->getAllQuery(),
+            $this->get('request')->query->get('page', 1),
+            50
+        );
 
         return $this->render('WurstpressCoreBundle:Collection:index.html.twig', array(
-            'entities' => $entities,
-            'total' => count($entities)
+            'entities' => $entities
         ));
     }
 

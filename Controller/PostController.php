@@ -22,7 +22,12 @@ class PostController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('WurstpressCoreBundle:Post')->findAll();
+        $paginator  = $this->get('knp_paginator');
+        $entities = $paginator->paginate(
+            $em->getRepository('WurstpressCoreBundle:Post')->getAllQuery(),
+            $this->get('request')->query->get('page', 1),
+            10
+        );
 
         return $this->render('WurstpressCoreBundle:Post:index.html.twig', array(
             'entities' => $entities,
