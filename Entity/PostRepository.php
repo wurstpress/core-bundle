@@ -15,6 +15,8 @@ class PostRepository extends EntityRepository
 {
     public function getAllQuery()
     {
-        return $this->createQueryBuilder('n')->getQuery();
+        return $this->createQueryBuilder('n')
+            ->orderBy('n.created', 'desc')
+            ->getQuery();
     }
 }
