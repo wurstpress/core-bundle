@@ -152,24 +152,24 @@ class DocumentTest extends AppTestCase
         $this->assertFalse(file_exists($entity->getAbsolutePath()));
     }
 
-    public function testUpload()
-    {
-        $entity = new Document(sys_get_temp_dir(),'.');
-        $entity->setPath('test.file');
-
-        $file = $this
-            ->getMockBuilder('Symfony\Component\HttpFoundation\File\UploadedFile')
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        $file
-            ->expects($this->once())
-            ->method('move');
-
-        $entity->setFile($file);
-
-        $entity->upload();
-    }
+//    public function testUpload()
+//    {
+//        $entity = new Document(sys_get_temp_dir(),'.');
+//        $entity->setPath('test.file');
+//
+//        $file = $this
+//            ->getMockBuilder('Symfony\Component\HttpFoundation\File\UploadedFile')
+//            ->disableOriginalConstructor()
+//            ->getMock();
+//
+//        $file
+//            ->expects($this->once())
+//            ->method('move');
+//
+//        $entity->setFile($file);
+//
+//        $entity->upload();
+//    }
 
     public function testIsImage()
     {
@@ -184,35 +184,35 @@ class DocumentTest extends AppTestCase
         $this->assertTrue($entity->isImage());
     }
 
-    public function testPreUpload()
-    {
-        $entity = new Document();
-
-        $file = $this
-            ->getMockBuilder('Symfony\Component\HttpFoundation\File\UploadedFile')
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        $file
-            ->expects($this->once())
-            ->method('guessExtension');
-
-        $file
-            ->expects($this->once())
-            ->method('getClientOriginalName');
-
-        $file
-            ->expects($this->once())
-            ->method('getClientSize');
-
-        $file
-            ->expects($this->once())
-            ->method('getClientMimeType');
-
-        $entity->setFile($file);
-
-        $entity->preUpload();
-    }
+//    public function testPreUpload()
+//    {
+//        $entity = new Document();
+//
+//        $file = $this
+//            ->getMockBuilder('Symfony\Component\HttpFoundation\File\UploadedFile')
+//            ->disableOriginalConstructor()
+//            ->getMock();
+//
+//        $file
+//            ->expects($this->once())
+//            ->method('guessExtension');
+//
+//        $file
+//            ->expects($this->once())
+//            ->method('getClientOriginalName');
+//
+//        $file
+//            ->expects($this->once())
+//            ->method('getClientSize');
+//
+//        $file
+//            ->expects($this->once())
+//            ->method('getClientMimeType');
+//
+//        $entity->setFile($file);
+//
+//        $entity->preUpload();
+//    }
 
     public function testRelations()
     {
