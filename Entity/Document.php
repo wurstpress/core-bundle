@@ -78,7 +78,7 @@ class Document
     protected $collection;
 
     /**
-     * @Assert\File(maxSize="6000000")
+     * @Assert\File(maxSize="104857600")
      * @Assert\NotBlank()
      */
     private $file;
