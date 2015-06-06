@@ -86,6 +86,12 @@ class Post implements Taggable
      */
     private $tags;
 
+    /**
+     * @var int
+     * @ORM\Column(name="views", type="integer")
+     */
+    private $views = 0;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
@@ -279,5 +285,23 @@ class Post implements Taggable
     public function getCollection()
     {
         return $this->collection;
+    }
+
+    /**
+     * @return int
+     */
+    public function getViews()
+    {
+        return $this->views;
+    }
+
+    /**
+     * @param int $views
+     * @return $this
+     */
+    public function setViews($views)
+    {
+        $this->views = $views;
+        return $this;
     }
 }
