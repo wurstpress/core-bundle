@@ -4,14 +4,16 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Welcome!{% endblock %}</title>
-    {% stylesheets output="/bundles/wurstpresscore/css/main.css"
-        '@WurstpressCoreBundle/Resources/assets/twitter-bootstrap/css/bootstrap.css'
-        '@WurstpressCoreBundle/Resources/assets/twitter-bootstrap/css/wurstpress.css'
-        '@WurstpressCoreBundle/Resources/public/css/dropzone.css'
-        '@WurstpressCoreBundle/Resources/public/css/wurstpress.css'
-    %}
-    <link rel="stylesheet" href="{{ asset_url }}"/>
-    {% endstylesheets %}
+
+    <link rel="stylesheet" href="{{ asset('assets/bootstrap2/docs/assets/css/bootstrap.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('bundles/wurstpresscore/css/wurstpress.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('bundles/wurstpresscore/css/dropzone.css') }}"/>
+
+    <!--[if lt IE 9]>
+    <script src="{{ asset('assets/html5shiv/dist/html5shiv.min.js') }}"></script>
+    <script src="{{ asset('assets/respond/dest/respond.min.js') }}"></script>
+    <![endif]-->
+
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
 </head>
 <body>
